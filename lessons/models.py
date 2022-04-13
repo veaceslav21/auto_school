@@ -2,7 +2,10 @@ from django.db import models
 
 
 class Lesson(models.Model):
-    PLACE = models.Choices('Oras', 'Poligon')
+    PLACE = [
+        ('Oras', 'Oras'),
+        ('Poligon', 'Poligon')
+        ]
     CATEGORY = [
         ('A', 'A'),
         ('A1', 'A1'),
