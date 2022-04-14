@@ -1,5 +1,6 @@
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsOwnerOrAdminOrReadOnly
 from rest_framework.response import Response
 
 from .models import Lesson
@@ -26,7 +27,7 @@ class LessonList(generics.GenericAPIView):
 class LessonDetail(generics.GenericAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsOwnerOrAdminOrReadOnly, )
 
     def get(self, request, *args, **kwargs):
         lesson = self.get_object()
