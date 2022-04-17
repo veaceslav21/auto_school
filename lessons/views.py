@@ -18,7 +18,7 @@ class LessonList(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        serializer.initial_data['student'] = request.user.pk
+        serializer.initial_data['student'] = request.user.pk  # Todo 'set user default'
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
