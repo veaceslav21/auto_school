@@ -7,18 +7,14 @@ from .models import Lesson
 from .serializers import LessonSerializer
 
 
-class LessonList(generics.GenericAPIView):
+class LessonList(generics.ListCreateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(self.queryset.all(), many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def post(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        serializer.initial_data['student'] = request.user.pk  # Todo 'set user default'
+        serializer.initial_data['student'] = request.user.pk
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
