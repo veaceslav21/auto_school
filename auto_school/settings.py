@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # 3rd party
     'rest_framework',
     'rest_framework_simplejwt',
+    'mailjet_rest',
+    'django_mailjet',
     # local
     'account',
     'lessons'
@@ -148,3 +150,16 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+# Email Mailjet with email-api
+EMAIL_BACKEND = 'django_mailjet.backends.MailjetBackend'
+MAILJET_API_KEY = config('MAILJET_API_KEY')
+MAILJET_API_SECRET = config('MAILJET_SECRET_KEY')
+
+# Email Mailjet for core send_mail() func
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_SSL = config('EMAIL_USE_SSL')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
