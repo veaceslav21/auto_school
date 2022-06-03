@@ -1,4 +1,5 @@
 from django.db import models
+from account.models import Account
 
 
 class Lesson(models.Model):
@@ -14,7 +15,7 @@ class Lesson(models.Model):
         ('D', 'D')
     ]
 
-    student = models.ForeignKey('account.Account', on_delete=models.CASCADE)
+    student = models.ForeignKey(Account, on_delete=models.CASCADE)
     category = models.CharField(max_length=2, choices=CATEGORY)
     place = models.CharField(max_length=10, choices=PLACE, null=False)
     date_time = models.DateTimeField(null=False)
