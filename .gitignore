@@ -10,4 +10,8 @@ db.sqlite3
 # virtualenv
 .venv
 venv/
-.env/
+.env
+
+#docker
+Dockerfile
+docker-compose.yml

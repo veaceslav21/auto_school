@@ -163,3 +163,6 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_USE_SSL = config('EMAIL_USE_SSL')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+
+# Celery
+CELERY_BROKER_URL = config('CELERY_BROKER', default='redis://redis:6379/0')
